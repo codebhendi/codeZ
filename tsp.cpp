@@ -17,25 +17,27 @@ void rem(int index) {
 
 int tsp(int index, int n) {
     bool flag = false;
-    int max = 0;
+    int min = INT_MAX;
     int temp_index;
-    for (int i = 2; i < n; i++) {
+    for (int i = 2; i <= n; i++) {
         if (added[i] == 0) {
             flag = true;
             add(i);
             int temp = weight[index][i] + tsp(i, n);
-            if(max < temp) {
-                cout << index << " " << i << endl;
-                max = temp;
+            if(min >temp) {
+                cout << index << " " << i <<  " " << added[3] << endl;
+                min = temp;
+                rem(i);
+            } else {
                 rem(i);
             }
         }
     }
     if (flag == false){
-        cout << index <<  " " << 1 << endl;
+        cout << index <<  "end" << 1 << endl;
         return weight[1][index];
     }
-    return max;
+    return min;
 
 }
 
@@ -57,13 +59,13 @@ int main()
                 if ( j!= i) {
                     printf("%d %d", i, j);
                     //scanf("%d",&weight[i][j] );
-                    weight[i][j] = wight[i][j];
+                    weight[i + 1][j + 1] = wight[i][j];
                 }
             }
         }
-
+        cout << endl;
         add(1);
-        printf("%d", tsp(1, n));
+        printf("%d\n", tsp(1, n));
     }
 
 }
