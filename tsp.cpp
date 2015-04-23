@@ -27,10 +27,8 @@ int tsp(int index, int n) {
             if(min >temp) {
                 cout << index << " " << i <<  " " << added[3] << endl;
                 min = temp;
-                rem(i);
-            } else {
-                rem(i);
             }
+            rem(i);
         }
     }
     if (flag == false){
