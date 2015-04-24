@@ -47,16 +47,14 @@ int main()
     while(t--) {
         int n;
 
-        n = 4;
+        scanf("%d", &n);
+        int wight[n][n];
 
-        int wight[4][4] = {{0, 10, 15, 20}, { 10, 0, 35, 25}, {15, 35, 0, 30}, {20, 25, 30, 0}};
-        /*scanf("%d", &n);
-
-        */for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if ( j!= i) {
-                   // printf("%d %d ", i, j);
-                    //scanf("%d",&weight[i][j] );
+                    printf("%d %d ", i, j);
+                    scanf("%d",&wight[i][j] );
                     weight[i + 1][j + 1] = wight[i][j];
                 }
             }
