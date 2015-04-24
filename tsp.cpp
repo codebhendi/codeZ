@@ -25,14 +25,14 @@ int tsp(int index, int n) {
             add(i);
             int temp = weight[index][i] + tsp(i, n);
             if(min >temp) {
-                cout << index << " " << i <<  " " << added[3] << endl;
+                //cout << index << " " << i <<  " " << added[3] << endl;
                 min = temp;
             }
             rem(i);
         }
     }
     if (flag == false){
-        cout << index <<  "end" << 1 << endl;
+        //cout << index <<  "end" << 1 << endl;
         return weight[1][index];
     }
     return min;
