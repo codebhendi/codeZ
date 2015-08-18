@@ -1,4 +1,4 @@
-/* Using qsort() and bsearch() with values.*/
+/* Using qsort() and bsearch() with if if struct values.*/
 
  #include <stdio.h>
  #include <stdlib.h>
