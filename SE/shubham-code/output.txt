@@ -1,6 +1,6 @@
 struct 0
 auto 0
-const 4
+const 6
 for 2
 extern 0
 do 0

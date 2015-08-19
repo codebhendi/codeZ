@@ -26,16 +26,23 @@ public class Readkeywordsfromc {
         }
 
         try {
-                //the files from which we are going to take our input and give output
+            //the files from which we are going to take our input and give output
 
             BufferedWriter out = new BufferedWriter(new FileWriter("output.txt"));
             BufferedReader in = new BufferedReader(new FileReader("input.c"));
 
+            //we will read every line in the .c file
+            //then divide each string at breakpooints like
+            // space,:,{,},(,),?,,,/,!,% and &.
+            //We are then checkinh the first word in this string for // or /*.
+            //If it is // we are skipping that string.
+            //If it is /* we will make flag 0 and wait till 
+            //this string or any other string has */.
             String c;
             int flag = 1;
 
             while ((c= in.readLine()) != null) {
-                String[] strs = c.split(" |\\n|;|\\{|\\}|\\(|\\)|\\?|,|\\?|\\||!|\\&|%");
+                String[] strs = c.split(" |\\n|;|\\{|\\}|\\(|\\)|,|\\?|\\||!|\\&|%");
                 if (strs.length > 0) {
                     if (flag == 0) {
                         if (strs[strs.length - 1].contains("*/")) {
@@ -44,6 +51,9 @@ public class Readkeywordsfromc {
                         }
                     }
                     if (strs[0].contains("/*")) {
+                        if (strs[strs.length - 1].contains("*/")) {
+                            continue;
+                        }
                         flag = 0;
                         continue;
                     }

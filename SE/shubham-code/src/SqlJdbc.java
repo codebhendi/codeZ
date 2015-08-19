@@ -1,19 +1,40 @@
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.sql.DriverManager;
 import java.util.*;
 
 class JDBCTest {
+    String url;
+    String user;
+    String password;
+    InputStream inputStream;
     
-    String url = "jdbc:mysql://localhost/shubham_se";
+    JDBCTest() throws IOException {
+        Properties prop = new Properties();
+        String propFileName = "config.properties";
+        BufferedReader f = new BufferedReader(new FileReader("config.properties"));
+        //inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+
+        if (f != null) {
+                prop.load(f);
+                user  = prop.getProperty("username");
+                url = prop.getProperty("db_url");
+                password = prop.getProperty("password");
+                System.out.print(url);
+        } else {
+                throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+        }
+    }
     
-    String user = "root";
     
-    String password = "1234";
-    
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
         JDBCTest t = new JDBCTest();
-        Statement stmt = null;
+        /*Statement stmt = null;
         
         
         try {
@@ -57,6 +78,6 @@ class JDBCTest {
             e.printStackTrace();
             
         }
-        
+        */
     }
 }
