@@ -1,0 +1,12 @@
+{
+    "clients": [
+        {
+            "username": "root",
+            "password": "1234"
+        },
+        {
+            "username": "user",
+            "password": "0000" 
+        }
+    ] 
+}
