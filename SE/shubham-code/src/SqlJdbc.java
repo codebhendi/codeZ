@@ -1,12 +1,8 @@
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.sql.*;
-import java.sql.DriverManager;
-import java.util.*;
+import java.util.Properties;
+//import java.util.*;
 
 class JDBCTest {
     String url;
@@ -18,8 +14,7 @@ class JDBCTest {
         Properties prop = new Properties();
         String propFileName = "config.properties";
         BufferedReader f = new BufferedReader(new FileReader("config.properties"));
-        //inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-
+        
         if (f != null) {
                 prop.load(f);
                 user  = prop.getProperty("username");
@@ -34,18 +29,18 @@ class JDBCTest {
     
     public static void main(String args[]) throws IOException {
         JDBCTest t = new JDBCTest();
-        /*Statement stmt = null;
+        Statement stmt = null;
         
         
         try {
             
             Connection con = DriverManager.getConnection(t.url, t.user, t.password);
-            
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Success");
             System.out.println("Enter Student name");
-            Scanner s = new Scanner(System.in);
+            //Scanner s = new Scanner(System.in);
             
-            String str = s.nextLine();
+            String str = br.readLine();
             
             stmt = con.createStatement();
             
@@ -54,7 +49,8 @@ class JDBCTest {
             "INNER JOIN STUDENTSNAME " +
             "ON STUDENTS.enroll_no = STUDENTSNAME.enroll_no" +
             " order by STUDENTS.enroll_no";
-            ResultSet rs = stmt.executeQuery(sql);          
+                
+            ResultSet rs = stmt.executeQuery(sql);
             
             while(rs.next()){
                 //Retrieve by column name
@@ -74,10 +70,7 @@ class JDBCTest {
             con.close();
             
         } catch (Exception e) {
-            
-            e.printStackTrace();
-            
         }
-        */
+        
     }
 }
