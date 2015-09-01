@@ -8,14 +8,15 @@ float distance(int x1, int y1, int x2, int y2) {
 	return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
 
-void func(int x1, int y1, int x2, int y2) {
+int func(int x1, int y1, int x2, int y2) {
 	for (int i = 0;i < 8; i++) {
 		float dis;
 
-		if (i == 0 && y1 + 1 < n && mat[x1][y1 + 1] == 1) {
+		if (i == 0 && y1 + 1 < n && mat[x1][y1 + 1] != 1) {
 			dis = distance(x1, y1, x1, y1 + 1);
+			cout << dis;
 			if (x1 == x2 && y1 + 1 == y2) {
-				return dis;
+				return round(dis);
 			}
 			dis = dis + func(x1, y1 + 1, x2, y2);
 		} else if (i == 1 && x1 + 1 < m && y1 + 1 < n && mat[x1 + 1][y1 + 1] != 1) {
@@ -30,7 +31,7 @@ void func(int x1, int y1, int x2, int y2) {
 
 		} else if (i == 6 && x1 - 1 >= 0 && mat[x1 - 1][y1] != 1) {
 
-		} else if (i == 7 && y1 + 1 < n && x1 - 1 >= 0 && mat[x1 - 1][y1 + 1] == 1) {
+		} else if (i == 7 && y1 + 1 < n && x1 - 1 >= 0 && mat[x1 - 1][y1 + 1] != 1) {
 
 		} else {
 			return 0;
@@ -38,7 +39,7 @@ void func(int x1, int y1, int x2, int y2) {
 	}
 }
 
-int main() 
+int main()
 {
 	scanf("%d%d", &m, &n);
 
@@ -53,7 +54,7 @@ int main()
 	for (int i = 0; i < q; i++) {
 		int x1, x2, y1, y2;
 		scanf("%d%d%d%d", &x1, &y1, &x2, &y2);
-		func(x1,y1,x2,y2);
+		cout << func(x1,y1,x2,y2);
 	}
 
 	return 0;
